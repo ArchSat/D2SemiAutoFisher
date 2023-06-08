@@ -99,7 +99,7 @@ def move():
     pag.keyUp('w')
 
     pag.keyDown('s')
-    sleep(0.013)
+    sleep(0.02)
     pag.keyUp('s')
 
 
