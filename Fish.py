@@ -1,3 +1,5 @@
+import traceback
+
 import pyautogui as pag
 from PIL import ImageGrab
 from time import sleep
@@ -78,20 +80,33 @@ def move():
     pag.keyUp('w')
 
     pag.keyDown('s')
-    sleep(0.01)
+    sleep(0.013)
     pag.keyUp('s')
 
 
 if __name__ == '__main__':
-    def_consts()
-    print("Начало работы:")
+    print("Инициализация основных переменных...")
+    try:
+        def_consts()
+    except Exception as e:
+        print('В ходе работы произошла ошибка:\n')
+        print(traceback.format_exc())
+        input()
+    print('Инициализация завершена. Начало работы макроса:')
     for time in range(3):
         print(3 - time)
         sleep(1)
+    fish_count = 0
     while True:
-        if get_start_fish():
-            move()
-            get_fish()
-        if get_perfect_fish():
-            print("Обнаружена рыба")
-            get_fish()
+        try:
+            if get_start_fish():
+                move()
+                get_fish()
+            if get_perfect_fish():
+                fish_count += 1
+                print(f"Обнаружена рыба! Всего поймано: {fish_count}")
+                get_fish()
+        except Exception as e:
+            print('В ходе работы произошла ошибка:\n')
+            print(traceback.format_exc())
+            input()
