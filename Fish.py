@@ -8,13 +8,18 @@ from screeninfo import get_monitors, Monitor
 
 pag.FAILSAFE = True
 
+# Количество валидных для буквы Е символов
 e_count = 0
+# Допустимое значение отклонения от e_count, чтобы алгоритм принял изображение за кнопку взаимодействия
 e_delta = 0
+# Координаты для создания скрина области "Идеальной подсечки"
 bbox_pergect_fish = (0, 0, 0, 0)
+# Координаты для создания скрина области "Рыбачить"
 bbox_start_fish = (0, 0, 0, 0)
 
 
 def def_consts():
+    # Выбор основного монитора (если их более двух)
     primary_monitor = None
     for monitor in get_monitors():
         monitor: Monitor
@@ -28,6 +33,7 @@ def def_consts():
 
     global bbox_pergect_fish, bbox_start_fish, e_count, e_delta
 
+    # Объявление переменных для мониторов 2к (все значения подобраны вручную)
     if primary_monitor.width == 2560 and primary_monitor.height == 1440:
         e_count = 126
         e_delta = 5
@@ -35,6 +41,7 @@ def def_consts():
         start_fish_x, start_fish_y = 1056, 969
         pergect_fish_x, pergect_fish_y = 1144, 969
 
+    # Объявление переменных для мониторов FullHD (все значения подобраны вручную)
     elif primary_monitor.width == 1920 and primary_monitor.height == 1080:
         e_count = 65
         e_delta = 5
@@ -56,10 +63,14 @@ def get_fish():
 
 
 def detect_e(img):
+    # Конвертация изображения в сепию
     img = img.convert('L')
+    # Минимальный уровень для преобразования пикселя (белый / черный)
+    # (Серый с значением ниже указанного преобразуется в черный, в противном случае в белый - в lambda функции)
     thresh = 240
     r = img.point(lambda x: 255 if x > thresh else 0, mode='1')
     data = np.asarray(r, dtype="int32")
+    # Определяем соответствует ли область скриншота букве Е
     e_detected = e_count-e_delta <= data.sum() <= e_count+e_delta
     return e_detected
 
