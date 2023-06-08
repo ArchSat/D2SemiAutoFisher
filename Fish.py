@@ -13,7 +13,7 @@ e_count = 0
 # Допустимое значение отклонения от e_count, чтобы алгоритм принял изображение за кнопку взаимодействия
 e_delta = 0
 # Координаты для создания скрина области "Идеальной подсечки"
-bbox_pergect_fish = (0, 0, 0, 0)
+bbox_perfect_fish = (0, 0, 0, 0)
 # Координаты для создания скрина области "Рыбачить"
 bbox_start_fish = (0, 0, 0, 0)
 
@@ -31,7 +31,7 @@ def def_consts():
     else:
         raise NotImplementedError('Не удалось определить основной монитор')
 
-    global bbox_pergect_fish, bbox_start_fish, e_count, e_delta
+    global bbox_perfect_fish, bbox_start_fish, e_count, e_delta
 
     # Объявление переменных для мониторов 2к (все значения подобраны вручную)
     if primary_monitor.width == 2560 and primary_monitor.height == 1440:
@@ -39,7 +39,7 @@ def def_consts():
         e_delta = 5
         e_size = (31, 32)
         start_fish_x, start_fish_y = 1056, 969
-        pergect_fish_x, pergect_fish_y = 1144, 969
+        perfect_fish_x, perfect_fish_y = 1144, 969
 
     # Объявление переменных для мониторов FullHD (все значения подобраны вручную)
     elif primary_monitor.width == 1920 and primary_monitor.height == 1080:
@@ -47,12 +47,20 @@ def def_consts():
         e_delta = 5
         e_size = (23, 23)
         start_fish_x, start_fish_y = 793, 727
-        pergect_fish_x, pergect_fish_y = 858, 727
+        perfect_fish_x, perfect_fish_y = 858, 727
+
+    # Объявление переменных для мониторов 2560х1080 (все значения подобраны вручную by Nohi)
+    elif primary_monitor.width == 2560 and primary_monitor.height == 1080:
+        e_count = 65
+        e_delta = 5
+        e_size = (21, 22)
+        start_fish_x, start_fish_y = 1145, 727
+        perfect_fish_x, perfect_fish_y = 1203, 727
 
     else:
         raise NotImplementedError('Данное разрешение монитора не поддерживается!')
 
-    bbox_pergect_fish = (pergect_fish_x, pergect_fish_y, pergect_fish_x + e_size[0], pergect_fish_y + e_size[1])
+    bbox_perfect_fish = (perfect_fish_x, perfect_fish_y, perfect_fish_x + e_size[0], perfect_fish_y + e_size[1])
     bbox_start_fish = (start_fish_x, start_fish_y, start_fish_x + e_size[0], start_fish_y + e_size[1])
 
 
@@ -81,7 +89,7 @@ def get_start_fish():
 
 
 def get_perfect_fish():
-    img = ImageGrab.grab(bbox=bbox_pergect_fish)
+    img = ImageGrab.grab(bbox=bbox_perfect_fish)
     return detect_e(img)
 
 
