@@ -18,6 +18,9 @@
 При запуске программы происходит инициализация переменных (подобраны вручную) для обнаружения областей с кнопкой взаимодействия. <br/>
 После инициализации всех переменных начинается непрерывный захват двух областей - "Идеальная подсечка" и "Рыбачить". <br/>
 Процесс преобразования захваченного изображения: <br/>
-![Image alt](https://github.com/archsat/D2SemiAutoFisher/raw/master/readme/original_image.png) -> ![Image alt](https://github.com/archsat/D2SemiAutoFisher/raw/master/readme/first_transform.png) -> ![Image alt](https://github.com/archsat/D2SemiAutoFisher/raw/master/readme/second_transform.png)
+|Оригинальное изображение|Первое преобразование|Второе преобразование|
+|:-------------:|:------------------:|:-----:|
+|![Image alt](https://github.com/archsat/D2SemiAutoFisher/raw/master/readme/original_image.png)|![Image alt](https://github.com/archsat/D2SemiAutoFisher/raw/master/readme/first_transform.png)|![Image alt](https://github.com/archsat/D2SemiAutoFisher/raw/master/readme/second_transform.png)|
+
 <br/>
 На изображении полученном в ходе последнего преобразования выполняется подсчет пикселей белого цвета. Если полученное значение попадает в заранее заданный интервал, то выполняется нажание кнопки взаимодействия (Е).
