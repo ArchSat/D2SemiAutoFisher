@@ -3,6 +3,7 @@
 Предугадывая вопросы почему "полуавтоматический" - перемещение между точками появления прудов не предусмотрено. <br/>
 Создано специально для [Discord](https://elderly-clan.ru/discord) сервера клана ElderLy. <br/>
 Отдельная благодарность Nohi.
+За основу исходного кода использовался репозиторий [D2SemiAutoFisher](https://github.com/Chadhendrixs/D2SemiAutoFisher).
 
 # Использование
 - Скачать последний релиз приложения [отсюда](https://github.com/ArchSat/D2SemiAutoFisher/releases).
